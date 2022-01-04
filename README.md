@@ -1,4 +1,4 @@
-# ROOT TIM HUB DGA4132 E GUI ANSUEL - VERSIONE AGTHP 2.3.3
+# ROOT TIM HUB DGA4132 AND ANSUEL GUI - VERSION AGTHP 2.3.3
 This guide has been written to have a simple and immediate reference point in case you want to proceed with the enabling of the root user of the TIM HUB DGA4132 modem router (hereinafter "router") and the subsequent installation of the Ansuel GUI. All the steps have been taken and adapted from the websites listed in the paragraph below, then grouped on this page and set up in the correct order.
 
 This guide is available in the following formats:
@@ -15,7 +15,7 @@ This guide is available in the following formats:
 - [WinSCP](https://winscp.net/eng/download.php)
 
 
-## FILE UTILI
+## USEFUL FILES
 The `autoflashgui-master_timhub.zip` file contains the `16.02.2018` version of the AutoFlashGUI tool developed by Mark Smith (mswhirl). Once extracted, inside the *autoflashgui-master/firmware* folder you can find the following files needed for this guide:
 - `AGTHP_1.0.3_CLOSED.rbi`: version AGTHP 1.0.3 of the firmware downloaded from the website "Hacking Technicolor Gateways: Material for MkDocs"
 - `AGTHP_2.3.3_CLOSED.rbi`: version AGTHP 2.3.3 of the firmware downloaded from the website "Hacking Technicolor Gateways: Material for MkDocs"
@@ -253,7 +253,7 @@ find /rom/usr/lib/ipk -type f |xargs -n1 basename | cut -f 1 -d '_' |xargs opkg 
 - Once the Ansuel GUI is installed, the username and password will be `admin/admin` again. It is also reccomended to change this password in order to prevent unauthorized access to the administration web page. To do this, after after you log into the web GUI, click on the *Advanced* button at the top right next to the username *admin* and then on *Profile settings*
 
 
-### FINE
+### RESULT
 Now you have a TIM HUB DGA4132 modem router updated to AGTHP version 2.3.3 with root permissions enabled and the Ansuel GUI.
 
 

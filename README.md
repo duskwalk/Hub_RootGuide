@@ -1,53 +1,67 @@
-# TIM HUB ROOT - VERSION AGTHP 2.3.3
+# ROOT TIM HUB DGA4132 E GUI ANSUEL - VERSIONE AGTHP 2.3.3
+This guide has been written to have a simple and immediate reference point in case you want to proceed with the enabling of the root user of the TIM HUB DGA4132 modem router (hereinafter "router") and the subsequent installation of the Ansuel GUI. All the steps have been taken and adapted from the websites listed in the paragraph below, then grouped on this page and set up in the correct order.
+
+This guide is available in the following formats:
+- Markdown (`TIM_HUB_guide_IT.md`)
+- PDF (`TIM_HUB_guide_IT.pdf`)
+- HTML (`TIM_HUB_guide_IT.html`)
 
 
 ## WEBSITES
 - [Hacking Technicolor Gateways: Material for MkDocs](https://hack-technicolor.readthedocs.io/en/stable/)
-- [IlPuntoTecnico](https://www.ilpuntotecnico.com/forum/index.php?topic=81461.0)
+- [IlPuntoTecnico GUI Ansuel](https://www.ilpuntotecnico.com/forum/index.php?topic=81461.0)
+- [GitHub GUI Ansuel](https://github.com/Ansuel/gui-dev-build-auto)
+- [GitHub AutoFlashGUI](https://github.com/mswhirl/autoflashgui)
+- [WinSCP](https://winscp.net/eng/download.php)
 
 
 ## FILE UTILI
-- Path: *TIM_HUB_root.zip/autoflashgui-master_timhub.zip/autoflashgui-master/firmware*
+The `autoflashgui-master_timhub.zip` file contains the `16.02.2018` version of the AutoFlashGUI tool developed by Mark Smith (mswhirl). Once extracted, inside the *autoflashgui-master/firmware* folder you can find the following files needed for this guide:
+- `AGTHP_1.0.3_CLOSED.rbi`: version AGTHP 1.0.3 of the firmware downloaded from the website "Hacking Technicolor Gateways: Material for MkDocs"
+- `AGTHP_2.3.3_CLOSED.rbi`: version AGTHP 2.3.3 of the firmware downloaded from the website "Hacking Technicolor Gateways: Material for MkDocs"
+- `GUI.tar.bz2`: stable version 9.6.65 of the Ansuel GUI downloaded from Ansuel's `gui-dev-build-auto` GitHub repository. Please check for new versions before proceeding
 
 
 ---
 
 
 ## GUIDE - PART 1
-- Aggiornare TIM HUB alla versione 2.3.3
-- Dalla prima scheda nella GUI web, eseguire backup configurazione in `.bin` se necessario
-- Eseguire reset modem
-- Al riavvio, login nella pagina web (`admin/admin`), non cambiare la password e attivare le funzionalità estese
-- Per rifare il login nella GUI, la password è la **ACCESS KEY** sull'etichetta posteriore del modem (sotto l'ultimo codice a barre nella colonna a sinistra)
-- Entrare nella prima scheda ed eseguire dalla terza tab il downgrade alla versione 1.0.3 caricando il file `AGTHP_1.0.3_CLOSED.rbi`
-- Al riavvio, non sarà possibile fare il login. Eseguire reset modem dal tasto sul retro (tenere premuto per 10-12 sec.)
-- Al riavvio, login nella pagina web (`admin/admin`) senza cambiare la password
-- Eseguire il programma `autoflashgui.exe` contenuto nella cartella *autoflashgui-master*
+- Update the router to version 2.3.3 (you can do this using the "TIM Modem" smartphone app available for Android and iOS)
+- From the first *Gateway* tab in the web GUI, if necessary, backup configuration in `.bin` via the *Export* button. A file named "config.bin" will be downloaded
+- Reset the router via the *Reset* button
+- AOn reboot, login to the web page (`admin/admin`), don't change the password and activate the *Extended configuration* mode
+> WARNING: To enable the Extended Configuration it's necessary to click on a tab that appears ONLY at the first login immediately after a reset. If you log out of the web GUI or close the browser window, you will need to perform another router reset to trigger the Extended configuration prompt again. Furthermore, the router must NOT be connected to the Internet in any way: disconnect the RJ11 cable, the Ethernet cable in the WAN port or the FTTH connection.
+- To log in again in the GUI, the password is the **ACCESS KEY** on the label located at the base of the router (under the last barcode in the left column)
+- Enter the first *Gateway* tab and perform the downgrade to version 1.0.3 from the third tab. To do this, load the `AGTHP_1.0.3_CLOSED.rbi` file by clicking on *Choose file* and then on *Update* in the *Firmware update* section
+- After reboot, you won't be able to login. Reset router from the button on the back (hold for **10-12 sec.**)
+- After the second reboot, login to the web page (`admin/admin`) without changing the password
+- Run the `autoflashgui.exe` program inside *autoflashgui-master* folder
 
 
 ### AUTOFLASHGUI.EXE
+Set the following parameters with their respective values
 - Load default: *Generic (Advanced DDNS)*
-- Target IP: ip modem
+- Target IP: ip router
 - Username: user GUI web
 - Password: password GUI web
-- **NON** selezionare *Firmware File Name* e la spunta *Flash firmware*
-- Attivare *Split the given command on semicolons [...]* se non selezionato
-- Lasciare invariato il resto delle impostazioni
-- Cliccare su *Run*
-- Attendere risultato sulla shell
-- Chiudere il programma
-- Collegarsi in SSH al modem e provare a autenticarsi con `root/root`
+- **DO NOT** select *Firmware File Name* and *Flash firmware?*
+- Check *Split the given command on semicolons [...]* if not already selected
+- Leave the other settings unchanged
+- Click on *Run*
+- Wait for result on the shell
+- Close the program (it will no longer be necessary)
+- Connect with SSH to the router and try to authenticate with `root/root`
 
 
 ---
 
 
 ## GUIDE - PART 2
-- Dalla shell root del modem abilitare la Serial Console Port
+- Enable the Serial Console Port from the router's root shell
     - `sed -i -e 's/#//' -e 's#askconsole:.*\$#askconsole:/bin/ash#' /etc/inittab`
-- Verificare lo stato delle bank
+- Check the banks status
     - `find /proc/banktable -type f -print -exec cat {} ';' -exec echo ';'`
-- Prendere nota dei seguenti paramentri
+- Take note of the following parameters
 
         ...
 	    /proc/banktable/booted
@@ -56,7 +70,7 @@
 	    <take note of this>
 	    ...
 
-- E' necessario che il risultato del comando precedente diventi come segue
+- To achieve our goal, the result of the previous command must become as follows
 
         /proc/banktable/active
 	    bank_1
@@ -65,11 +79,11 @@
 	    /proc/banktable/booted
 	    bank_2
 
-- Proseguire quindi al passaggio successivo per impostare come active il `bank_1` per poi cancellarlo e fare in modo che vada in boot il `bank_2`
+- Then proceed to the next step to set `bank_1` as active and then delete it to always boot the `bank_2`
 
 
 ### SCRIPT
-- Creare con il comando `vim` uno script con i seguenti comandi
+- Create a script using `vim` with the following commands
 
 ```bash
 # Ensure two banks match in sizes
@@ -98,31 +112,33 @@ echo c > /proc/sysrq-trigger; }
 # end
 ```
 
-- Lanciare il seguente comando per renderlo eseguibile
+- Run the following command to make it executable
     - `chmod +x script.sh`
+- Run the new script
+    - `./script.sh`
 
 
 ---
 
 
 ## GUIDE - PART 3
-- E' possibile proseguire con l'update del firmware per tornare alla versione 2.3.3
-- Aprire WinSCP e collegarsi con protocollo SCP al modem con credenziali `root/root`
-- Caricare nella directory `/tmp` del modem il file `AGTHP_2.3.3_CLOSED.rbi` rinominandolo in `new.rbi`
-- Eseguire dalla shell il seguente comando
+- Now we can proceed with the firmware upgrade to return to version 2.3.3
+- Open WinSCP (or similar software) and connect with SCP protocol to the router with `root/root` credentials
+- Upload the `AGTHP_2.3.3_CLOSED.rbi` file inside the `/tmp` router directory and rename it in `new.rbi`
+- Run the following command from the shell
     - `cat "/tmp/new.rbi" | (bli_parser && echo "Please wait..." && (bli_unseal | dd bs=4 skip=1 seek=1 of="/tmp/new.bin"))`
-- E' necessario fare un clean-up di file e configurazioni
-- Creare un backup con il seguente comando e salvarlo sul proprio PC tramite WinSCP
+- It's necessary to proceed with a clean-up of files and configurations
+- Create a backup with the following command and save it on your PC via WinSCP
     - `tar -C /overlay -cz -f /tmp/backup-$(date -I).tar.gz $(cat /proc/banktable/booted)`
-- Eseguire il comando seguente per cancellare completamente l'overlay della bank attualmente bootata
+- Run the following command to completely clear the currently booted bank overlay
     - `rm -rf /overlay/$(cat /proc/banktable/booted)`
-- Cambiando versione del firmware il root potrebbe andare perso
+- If you change the firmware version, the root may be lost. DO NOT restart and then proceed to the next step
 
 
 ### PRESERVING ROOT ACCESS
-- Eseguire il blocco di comandi seguente per preparare uno script che andrà eseguito una volta sola al boot successivo per garantire l'accesso con root
+- Run the following block of commands via SSH to prepare a script that will only need to be run once on next boot to grant root access
 
-> COPIA E INCOLLA NEL TERMINALE. PREMERE INVIO PER ESEGUIRE L'ULTIMO COMANDO
+> COPY AND PASTE INTO THE TERMINAL. PRESS ENTER TO EXECUTE THE LAST COMMAND.
 
 ```bash
 mkdir -p /overlay/$(cat /proc/banktable/booted)/etc
@@ -154,20 +170,20 @@ chmod +x /overlay/$(cat /proc/banktable/booted)/etc/rc.local
 sync
 ```
 
-- Se la password di root è stata cambiata, questa verrà resettata a `root/root`
-- Il gateway adesso è pulito. L'accesso con root tramite SSH verrà abilitato di nuovo permanentemente al boot successivo
+- If the root password has been changed, it will be reset to `root/root`
+- The gateway is now clean. Root access via SSH will be enabled again permanently on the next boot
 
 
 ### FLASHING FIRMWARE
-- Eseguire i seguenti comandi per scrivere il file `/tmp/new.bin` nella bank booted e per provocare un hard reboot
+- Run the following commands one at a time to write the `/tmp/new.bin` file to the booted bank and to cause a hard reboot
     - `mtd -e $(cat /proc/banktable/booted) write "/tmp/new.bin" $(cat /proc/banktable/booted)`
     - `echo c > /proc/sysrq-trigger`
 
 
 ### HARDENING GAINED ACCESS
-- Eseguire i seguenti comandi nel terminale SSH per prevenire che il modem perda inaspettatamente l'accesso root
+- Run the following in the SSH terminal to prevent your Gateway loosing root access unexpectedly
 
-> COPIA E INCOLLA NEL TERMINALE. PREMERE INVIO PER ESEGUIRE L'ULTIMO COMANDO
+> COPY AND PASTE INTO THE TERMINAL. PRESS ENTER TO EXECUTE THE LAST COMMAND.
 
 ```bash
 # Disable CWMP
@@ -219,21 +235,25 @@ uci commit dropbear
 find /rom/usr/lib/ipk -type f |xargs -n1 basename | cut -f 1 -d '_' |xargs opkg --force-removal-of-dependent-packages remove
 ```
 
-- Se ricevi messaggi di errore da un comando, è possibile ignorarli: significa che il comando non era necessario per la tua versione del firmware
+- If you get one or more error messages from running these commands, you can ignore them: it means the command was not needed for your firmware version
 
 
 ### GUI ANSUEL
-- Collegarsi con WinSCP al modem come descritto in precedenza
-- Copiare il file `GUI.tar.bz2` nella directory `/tmp`
-- Collegarsi in SSH al modem con root
-- Eseguire il seguente comando per estrarre la GUI
+- Connect with WinSCP to the router as described above
+- Copy the `GUI.tar.bz2` file to the `/tmp` directory
+- Connect in SSH to the router with root user
+- Run the following command to extract the GUI
     - `bzcat /tmp/GUI.tar.bz2 | tar -C / -xvf - && /etc/init.d/rootdevice force`
-- Attendere fino al termine della procedura. Se necessario il modem potrebbe riavviarsi da solo. Ignorare gli ultimi messaggi di errore
-- In caso di Errore 9 riavviare il modem e il problema sarà risolto
+- Wait until the procedure is finished. If necessary, the router may reboot itself. Ignore the latest error messages
+- In case of *Error 9* restart the router and the problem will be solved
 
 
-### ROOT PASSWORD RESET
-- Eseguire il comando `passwd` per cambiare la password di accesso dell'utente root
+### CHANGE ROOT AND GUI PASSWORD
+- Run the `passwd` command in the terminal to change the login password for the root user. This procedure is strongly recommended
+- Once the Ansuel GUI is installed, the username and password will be `admin/admin` again. It is also reccomended to change this password in order to prevent unauthorized access to the administration web page. To do this, after after you log into the web GUI, click on the *Advanced* button at the top right next to the username *admin* and then on *Profile settings*
 
+
+### FINE
+Now you have a TIM HUB DGA4132 modem router updated to AGTHP version 2.3.3 with root permissions enabled and the Ansuel GUI.
 
 

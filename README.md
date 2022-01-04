@@ -29,7 +29,7 @@ The `autoflashgui-master_timhub.zip` file contains the `16.02.2018` version of t
 - Update the router to version 2.3.3 (you can do this using the "TIM Modem" smartphone app available for Android and iOS)
 - From the first *Gateway* tab in the web GUI, if necessary, backup configuration in `.bin` via the *Export* button. A file named "config.bin" will be downloaded
 - Reset the router via the *Reset* button
-- AOn reboot, login to the web page (`admin/admin`), don't change the password and activate the *Extended configuration* mode
+- After reboot, login to the web page (`admin/admin`), don't change the password and activate the *Extended configuration* mode
 > WARNING: To enable the Extended Configuration it's necessary to click on a tab that appears ONLY at the first login immediately after a reset. If you log out of the web GUI or close the browser window, you will need to perform another router reset to trigger the Extended configuration prompt again. Furthermore, the router must NOT be connected to the Internet in any way: disconnect the RJ11 cable, the Ethernet cable in the WAN port or the FTTH connection.
 - To log in again in the GUI, the password is the **ACCESS KEY** on the label located at the base of the router (under the last barcode in the left column)
 - Enter the first *Gateway* tab and perform the downgrade to version 1.0.3 from the third tab. To do this, load the `AGTHP_1.0.3_CLOSED.rbi` file by clicking on *Choose file* and then on *Update* in the *Firmware update* section

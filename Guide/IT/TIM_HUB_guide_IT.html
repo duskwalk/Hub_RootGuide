@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TIM_HUB_guide_IT.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="root-tim-hub-dga4132-e-gui-ansuel---versione-agthp-233">ROOT TIM HUB DGA4132 E GUI ANSUEL - VERSIONE AGTHP 2.3.3</h1>
+<p>La presente guida è stata concepita per avere un punto di riferimento semplice e immediato in caso si voglia procedere con l'abilitazione dell'utenza root del modem router TIM HUB DGA4132 (di seguito &quot;router&quot;) e della successiva installazione della GUI Ansuel. Tutti i passaggi sono stati presi e adattati dai siti web riportati nel paragrafo sottostante, successivamente raggruppati in questa pagina e impostati nell'ordine corretto.</p>
+<p>Questa guida è disponibile nei seguenti formati:</p>
+<ul>
+<li>Markdown (<code>TIM_HUB_guide_IT.md</code>)</li>
+<li>PDF (<code>TIM_HUB_guide_IT.pdf</code>)</li>
+<li>HTML (<code>TIM_HUB_guide_IT.html</code>)</li>
+</ul>
+<h2 id="siti-web">SITI WEB</h2>
+<ul>
+<li><a href="https://hack-technicolor.readthedocs.io/en/stable/">Hacking Technicolor Gateways: Material for MkDocs</a></li>
+<li><a href="https://www.ilpuntotecnico.com/forum/index.php?topic=81461.0">IlPuntoTecnico GUI Ansuel</a></li>
+<li><a href="https://github.com/Ansuel/gui-dev-build-auto">GitHub GUI Ansuel</a></li>
+<li><a href="https://github.com/mswhirl/autoflashgui">GitHub AutoFlashGUI</a></li>
+<li><a href="https://winscp.net/eng/download.php">WinSCP</a></li>
+</ul>
+<h2 id="file-utili">FILE UTILI</h2>
+<p>Il file <code>autoflashgui-master_timhub.zip</code> contiene la versione <code>16.02.2018</code> del tool AutoFlashGUI sviluppato da Mark Smith (mswhirl). Una volta estratto, all'interno della cartella <em>autoflashgui-master/firmware</em> è possibile trovare i seguenti file necessari a questa guida:</p>
+<ul>
+<li><code>AGTHP_1.0.3_CLOSED.rbi.torrent</code>: file torrent per avviare il download della versione AGTHP 1.0.3 del firmware scaricato dal sito web &quot;Hacking Technicolor Gateways: Material for MkDocs&quot;. Una volta completato il download, spostare il file nella cartella <em>autoflashgui-master/firmware</em></li>
+<li><code>AGTHP_2.3.3_CLOSED.rbi.torrent</code>: file torrent per avviare il download della versione AGTHP 2.3.3 del firmware scaricato dal sito web &quot;Hacking Technicolor Gateways: Material for MkDocs&quot;. Una volta completato il download, spostare il file nella cartella <em>autoflashgui-master/firmware</em></li>
+<li><code>GUI.tar.bz2</code>: versione stabile 9.6.65 della GUI Ansuel scaricata dalla repository GitHub <code>gui-dev-build-auto</code> di Ansuel. Per favore, controllare la presenza di nuove versioni prima di procedere</li>
+</ul>
+<hr>
+<h2 id="guida---parte-1">GUIDA - PARTE 1</h2>
+<ul>
+<li>Aggiornare il router alla versione 2.3.3 (è possibile effettuare questa operazione tramite l'applicazione per smartphone &quot;TIM Modem&quot; disponibile per Android e iOS)</li>
+<li>Dalla prima scheda <em>Gateway</em> nella GUI web, se necessario, eseguire backup configurazione in <code>.bin</code> tramite il pulsante <em>Esporta</em>. Verrà scaricato un file denominato &quot;config.bin&quot;</li>
+<li>Eseguire reset router tramite il pulsante <em>Ripristina</em></li>
+<li>Al riavvio, login nella pagina web (<code>admin/admin</code>), non cambiare la password e attivare la modalità <em>Configurazione estesa</em></li>
+</ul>
+<blockquote>
+<p>ATTENZIONE: Per abilitare la Configurazione estesa è necessario cliccare su una scheda che compare SOLO al primo login subito dopo un reset. Se si esegue il logout dalla GUI web o si chiude la finestra del browser, sarà necessario procedere con un ulteriore reset del router per ottenere nuovamente il prompt Configurazione estesa. Inoltre, il router NON deve essere in alcun modo collegato a Internet: scollegare quindi il cavo RJ11, il cavo Ethernet nella porta WAN oppure la connessione in FTTH.</p>
+</blockquote>
+<ul>
+<li>Per rifare il login nella GUI, la password è la <strong>ACCESS KEY</strong> sull'etichetta posta alla base del router (sotto l'ultimo codice a barre nella colonna a sinistra)</li>
+<li>Entrare nella prima scheda <em>Gateway</em> ed eseguire dalla terza tab il downgrade alla versione 1.0.3. Per fare ciò, caricare il file <code>AGTHP_1.0.3_CLOSED.rbi</code> cliccando su <em>Scegli il file</em> e poi su <em>Aggiorna</em> nella sezione <em>Aggiornamento firmware</em></li>
+<li>Al riavvio, non sarà possibile fare il login. Eseguire reset router dal tasto sul retro (tenere premuto per <strong>10-12 sec.</strong>)</li>
+<li>Al secondo riavvio, login nella pagina web (<code>admin/admin</code>) senza cambiare la password</li>
+<li>Eseguire il programma <code>autoflashgui.exe</code> contenuto nella cartella <em>autoflashgui-master</em></li>
+</ul>
+<h3 id="autoflashguiexe">AUTOFLASHGUI.EXE</h3>
+<p>Impostare i seguenti parametri con i rispettivi valori</p>
+<ul>
+<li>Load default: <em>Generic (Advanced DDNS)</em></li>
+<li>Target IP: ip router</li>
+<li>Username: user GUI web</li>
+<li>Password: password GUI web</li>
+<li><strong>NON</strong> selezionare <em>Firmware File Name</em> e la spunta <em>Flash firmware?</em></li>
+<li>Attivare <em>Split the given command on semicolons [...]</em> se non selezionato</li>
+<li>Lasciare invariato il resto delle impostazioni</li>
+<li>Cliccare su <em>Run</em></li>
+<li>Attendere risultato sulla shell</li>
+<li>Chiudere il programma (non sarà più necessario)</li>
+<li>Collegarsi in SSH al router e provare ad autenticarsi con <code>root/root</code></li>
+</ul>
+<hr>
+<h2 id="guida---parte-2">GUIDA - PARTE 2</h2>
+<ul>
+<li>
+<p>Dalla shell root del router abilitare la Serial Console Port</p>
+<ul>
+<li><code>sed -i -e 's/#//' -e 's#askconsole:.*\$#askconsole:/bin/ash#' /etc/inittab</code></li>
+</ul>
+</li>
+<li>
+<p>Verificare lo stato delle bank</p>
+<ul>
+<li><code>find /proc/banktable -type f -print -exec cat {} ';' -exec echo ';'</code></li>
+</ul>
+</li>
+<li>
+<p>Prendere nota dei seguenti parametri</p>
+<pre><code>  ...
+  /proc/banktable/booted
+  &lt;take note of this&gt;
+  proc/banktable/active
+  &lt;take note of this&gt;
+  ...
+</code></pre>
+</li>
+<li>
+<p>Per raggiungere il nostro scopo, è necessario che il risultato del comando precedente diventi come segue</p>
+<pre><code>  /proc/banktable/active
+  bank_1
+  /proc/banktable/activeversion
+  Unknown
+  /proc/banktable/booted
+  bank_2
+</code></pre>
+</li>
+<li>
+<p>Proseguire quindi al passaggio successivo per impostare come active il <code>bank_1</code> per poi cancellarlo e fare in modo che vada in boot il <code>bank_2</code></p>
+</li>
+</ul>
+<h3 id="script">SCRIPT</h3>
+<ul>
+<li>Creare con il comando <code>vim</code> uno script con i seguenti comandi</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># Ensure two banks match in sizes</span>
+[ $(grep -c bank_ /proc/mtd) = 2 ] &amp;&amp; \
+[ <span class="hljs-string">"<span class="hljs-variable">$(grep bank_1 /proc/mtd | cut -d' ' -f2)</span>"</span> = \
+<span class="hljs-string">"<span class="hljs-variable">$(grep bank_2 /proc/mtd | cut -d' ' -f2)</span>"</span> ] &amp;&amp; {
+<span class="hljs-comment"># Clone and verify firmware into bank_2 if applicable</span>
+[ <span class="hljs-string">"<span class="hljs-variable">$(cat /proc/banktable/booted)</span>"</span> = <span class="hljs-string">"bank_1"</span> ] &amp;&amp; {
+mtd -e bank_2 write /dev/$(grep bank_1 /proc/mtd | cut -d: -f1) bank_2 &amp;&amp; \
+mtd verify /dev/$(grep bank_1 /proc/mtd | cut -d: -f1) bank_2 || \
+{ <span class="hljs-built_in">echo</span> Clone verification failed, retry; <span class="hljs-built_in">exit</span>; } }
+<span class="hljs-comment"># Make a temp copy of overlay for booted firmware</span>
+cp -rf /overlay/$(cat /proc/banktable/booted) /tmp/bank_overlay_backup
+<span class="hljs-comment"># Clean up jffs2 space by removing existing old overlays</span>
+rm -rf /overlay/*
+<span class="hljs-comment"># Use the previously made temp copy as overlay for bank_2</span>
+cp -rf /tmp/bank_overlay_backup /overlay/bank_2
+<span class="hljs-comment"># Activate bank_1</span>
+<span class="hljs-built_in">echo</span> bank_1 &gt; /proc/banktable/active
+<span class="hljs-comment"># Make sure above changes get written to flash</span>
+sync
+<span class="hljs-comment"># Erase firmware in bank_1</span>
+mtd erase bank_1;
+<span class="hljs-comment"># Emulate system crash to hard reboot</span>
+<span class="hljs-built_in">echo</span> c &gt; /proc/sysrq-trigger; }
+<span class="hljs-comment"># end</span>
+</div></code></pre>
+<ul>
+<li>Lanciare il seguente comando per renderlo eseguibile
+<ul>
+<li><code>chmod +x script.sh</code></li>
+</ul>
+</li>
+<li>Eseguire lo script appena creato
+<ul>
+<li><code>./script.sh</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="guida---parte-3">GUIDA - PARTE 3</h2>
+<ul>
+<li>Adesso è possibile proseguire con l'upgrade del firmware per tornare alla versione 2.3.3</li>
+<li>Aprire WinSCP (o software simile) e collegarsi con protocollo SCP al router con credenziali <code>root/root</code></li>
+<li>Caricare nella directory <code>/tmp</code> del router il file <code>AGTHP_2.3.3_CLOSED.rbi</code> rinominandolo in <code>new.rbi</code></li>
+<li>Eseguire da shell il seguente comando
+<ul>
+<li><code>cat &quot;/tmp/new.rbi&quot; | (bli_parser &amp;&amp; echo &quot;Please wait...&quot; &amp;&amp; (bli_unseal | dd bs=4 skip=1 seek=1 of=&quot;/tmp/new.bin&quot;))</code></li>
+</ul>
+</li>
+<li>E' necessario procedere con un clean-up di file e configurazioni</li>
+<li>Creare un backup con il seguente comando e salvarlo sul proprio PC tramite WinSCP
+<ul>
+<li><code>tar -C /overlay -cz -f /tmp/backup-$(date -I).tar.gz $(cat /proc/banktable/booted)</code></li>
+</ul>
+</li>
+<li>Eseguire il comando seguente per cancellare completamente l'overlay della bank attualmente bootata
+<ul>
+<li><code>rm -rf /overlay/$(cat /proc/banktable/booted)</code></li>
+</ul>
+</li>
+<li>Cambiando versione del firmware il root potrebbe andare perso. NON riavviare e procedere quindi con il passaggio successivo</li>
+</ul>
+<h3 id="preservare-accesso-root">PRESERVARE ACCESSO ROOT</h3>
+<ul>
+<li>Eseguire tramite SSH il blocco di comandi seguente per preparare uno script che andrà eseguito una volta sola al boot successivo per garantire l'accesso con root</li>
+</ul>
+<blockquote>
+<p>COPIA E INCOLLA NEL TERMINALE. PREMERE INVIO PER ESEGUIRE L'ULTIMO COMANDO.</p>
+</blockquote>
+<pre class="hljs"><code><div>mkdir -p /overlay/$(cat /proc/banktable/booted)/etc
+chmod 755 /overlay/$(cat /proc/banktable/booted) /overlay/$(cat /proc/banktable/booted)/etc
+<span class="hljs-built_in">echo</span> -e <span class="hljs-string">"echo root:root | chpasswd
+sed -i 's#/root:.*\$#/root:/bin/ash#' /etc/passwd
+sed -i -e 's/#//' -e 's#askconsole:.*\$#askconsole:/bin/ash#' /etc/inittab
+uci -q set \$(uci show firewall | grep -m 1 \$(fw3 -q print | \
+egrep 'iptables -t filter -A zone_lan_input -p tcp -m tcp --dport 22 -m comment --comment \"!fw3: .+\" -j DROP' | \
+sed -n -e 's/^iptables.\+fw3: \(.\+\)\".\+/\1/p') | \
+sed -n -e \"s/\(.\+\).name='.\+'$/\1/p\").target='ACCEPT'
+uci add dropbear dropbear
+uci rename dropbear.@dropbear[-1]=afg
+uci set dropbear.afg.enable='1'
+uci set dropbear.afg.Interface='lan'
+uci set dropbear.afg.Port='22'
+uci set dropbear.afg.IdleTimeout='600'
+uci set dropbear.afg.PasswordAuth='on'
+uci set dropbear.afg.RootPasswordAuth='on'
+uci set dropbear.afg.RootLogin='1'
+uci set dropbear.lan.enable='0'
+uci commit dropbear
+/etc/init.d/dropbear enable
+/etc/init.d/dropbear restart
+rm /overlay/\$(cat /proc/banktable/booted)/etc/rc.local
+source /rom/etc/rc.local
+"</span> &gt; /overlay/$(cat /proc/banktable/booted)/etc/rc.local
+chmod +x /overlay/$(cat /proc/banktable/booted)/etc/rc.local
+sync
+</div></code></pre>
+<ul>
+<li>Se la password di root è stata cambiata, questa verrà resettata a <code>root/root</code></li>
+<li>Il gateway adesso è pulito. L'accesso con root tramite SSH verrà abilitato di nuovo permanentemente al boot successivo</li>
+</ul>
+<h3 id="flashing-del-firmware">FLASHING DEL FIRMWARE</h3>
+<ul>
+<li>Eseguire uno alla volta i seguenti comandi per scrivere il file <code>/tmp/new.bin</code> nella bank booted e per provocare un hard reboot
+<ul>
+<li><code>mtd -e $(cat /proc/banktable/booted) write &quot;/tmp/new.bin&quot; $(cat /proc/banktable/booted)</code></li>
+<li><code>echo c &gt; /proc/sysrq-trigger</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="consolidare-laccesso-ottenuto">CONSOLIDARE L'ACCESSO OTTENUTO</h3>
+<ul>
+<li>Eseguire i seguenti comandi nel terminale SSH per prevenire che il router perda inaspettatamente la possibilità di accesso con root</li>
+</ul>
+<blockquote>
+<p>COPIA E INCOLLA NEL TERMINALE. PREMERE INVIO PER ESEGUIRE L'ULTIMO COMANDO.</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment"># Disable CWMP</span>
+uci delete cwmpd.cwmpd_config
+uci delete firewall.cwmpd
+uci del_list watchdog.@watchdog[0].pidfile=<span class="hljs-string">'/var/run/cwmpd.pid'</span>
+uci del_list watchdog.@watchdog[0].pidfile=<span class="hljs-string">'/var/run/cwmpevents.pid'</span>
+uci commit
+/etc/init.d/watchdog-tch reload
+/etc/init.d/cwmpd <span class="hljs-built_in">disable</span>
+/etc/init.d/cwmpd stop
+/etc/init.d/cwmpdboot <span class="hljs-built_in">disable</span>
+/etc/init.d/cwmpdboot stop
+/etc/init.d/zkernelpanic <span class="hljs-built_in">disable</span>
+/etc/init.d/zkernelpanic stop
+
+<span class="hljs-comment"># Disable CWMP - extra, in case you think it may resurrect</span>
+uci <span class="hljs-built_in">set</span> cwmpd.cwmpd_config.state=0
+uci <span class="hljs-built_in">set</span> cwmpd.cwmpd_config.acs_url=<span class="hljs-string">'https://127.0.1.1:7547/'</span>
+uci <span class="hljs-built_in">set</span> cwmpd.cwmpd_config.use_dhcp=0
+uci <span class="hljs-built_in">set</span> cwmpd.cwmpd_config.interface=loopback
+uci <span class="hljs-built_in">set</span> cwmpd.cwmpd_config.enforce_https=1
+uci commit cwmpd
+
+<span class="hljs-comment"># Disable Telstra monitoring</span>
+uci delete tls-vsparc.Config
+uci delete tls-vsparc.Passive
+uci delete autoreset.vsparc_enabled
+uci delete autoreset.thor_enabled
+uci delete wifi_doctor_agent.acs
+uci delete wifi_doctor_agent.config
+uci delete wifi_doctor_agent.as_config
+uci commit
+
+<span class="hljs-comment"># Disable Telstra Air/Fon WiFi</span>
+/etc/init.d/hotspotd stop
+/etc/init.d/hotspotd <span class="hljs-built_in">disable</span>
+uci delete dhcp.hotspot
+uci delete dhcp.fonopen
+uci commit
+
+<span class="hljs-comment"># Remove any default SSH pubkey</span>
+<span class="hljs-built_in">echo</span> &gt; /etc/dropbear/authorized_keys
+<span class="hljs-comment"># Disable SSH access over wan</span>
+uci <span class="hljs-built_in">set</span> dropbear.wan.enable=<span class="hljs-string">'0'</span>
+uci commit dropbear
+
+<span class="hljs-comment"># Free space for gateways with small flash</span>
+find /rom/usr/lib/ipk -<span class="hljs-built_in">type</span> f |xargs -n1 basename | cut -f 1 -d <span class="hljs-string">'_'</span> |xargs opkg --force-removal-of-dependent-packages remove
+</div></code></pre>
+<ul>
+<li>Se ricevi uno o più messaggi di errore dall'esecuzione di questi comandi, è possibile ignorarli: significa che il comando non era necessario per la tua versione del firmware</li>
+</ul>
+<h3 id="installazione-gui-ansuel">INSTALLAZIONE GUI ANSUEL</h3>
+<ul>
+<li>Collegarsi con WinSCP al router come descritto in precedenza</li>
+<li>Copiare il file <code>GUI.tar.bz2</code> nella directory <code>/tmp</code></li>
+<li>Collegarsi in SSH al router con root</li>
+<li>Eseguire il seguente comando per estrarre la GUI
+<ul>
+<li><code>bzcat /tmp/GUI.tar.bz2 | tar -C / -xvf - &amp;&amp; /etc/init.d/rootdevice force</code></li>
+</ul>
+</li>
+<li>Attendere fino al termine della procedura. Se necessario il router potrebbe riavviarsi da solo. Ignorare gli ultimi messaggi di errore</li>
+<li>In caso di <em>Errore 9</em> riavviare il router e il problema sarà risolto</li>
+</ul>
+<h3 id="cambiare-password-root-e-gui">CAMBIARE PASSWORD ROOT E GUI</h3>
+<ul>
+<li>Eseguire il comando <code>passwd</code> nel terminale per cambiare la password di accesso dell'utente root. Questa procedure è fortemente consigliata</li>
+<li>Una volta installata la GUI Ansuel, username e password saranno nuovamente <code>admin/admin</code>. E' consigliato cambiare anche questa password in modo tale da prevenire accessi non autorizzati alla pagina web di amminsitrazione. Per fare ciò, dopo essere entrati nella GUI web, cliccare sul pulsante <em>Avanzate</em> in alto a destra accanto al nome utente <em>admin</em> e poi su <em>Impostazioni profilo</em></li>
+</ul>
+<h3 id="fine">FINE</h3>
+<p>Ora si dispone di un modem router TIM HUB DGA4132 aggiornato alla versione AGTHP 2.3.3 con i permessi di root abilitati e la GUI Ansuel.</p>
+
+</body>
+</html>

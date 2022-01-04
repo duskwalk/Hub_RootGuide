@@ -17,8 +17,8 @@ This guide is available in the following formats:
 
 ## USEFUL FILES
 The `autoflashgui-master_timhub.zip` file contains the `16.02.2018` version of the AutoFlashGUI tool developed by Mark Smith (mswhirl). Once extracted, inside the *autoflashgui-master/firmware* folder you can find the following files needed for this guide:
-- `AGTHP_1.0.3_CLOSED.rbi`: version AGTHP 1.0.3 of the firmware downloaded from the website "Hacking Technicolor Gateways: Material for MkDocs"
-- `AGTHP_2.3.3_CLOSED.rbi`: version AGTHP 2.3.3 of the firmware downloaded from the website "Hacking Technicolor Gateways: Material for MkDocs"
+- `AGTHP_1.0.3_CLOSED.rbi.torrent`: torrent file to start the download of the firmware version AGTHP 1.0.3 downloaded from the website "Hacking Technicolor Gateways: Material for MkDocs". Move the downloaded file into the *autoflashgui-master/firmware* folder
+- `AGTHP_2.3.3_CLOSED.rbi.torrent`: torrent file to start the download of the firmware version AGTHP 2.3.3 downloaded from the website "Hacking Technicolor Gateways: Material for MkDocs". Move the downloaded file into the *autoflashgui-master/firmware* folder
 - `GUI.tar.bz2`: stable version 9.6.65 of the Ansuel GUI downloaded from Ansuel's `gui-dev-build-auto` GitHub repository. Please check for new versions before proceeding
 
 

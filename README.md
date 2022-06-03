@@ -1,5 +1,6 @@
 # ROOT TIM HUB DGA4132 AND ANSUEL GUI - VERSION AGTHP 2.3.3
 This guide has been written to have a simple and immediate reference point in case you want to proceed with the enabling of the root user of the TIM HUB DGA4132 modem router (hereinafter "router") and the subsequent installation of the Ansuel GUI. All the steps have been taken and adapted from the websites listed in the paragraph below, then grouped on this page and set up in the correct order.
+
 This guide is available in the following formats:
 - Markdown (`TIM_HUB_guide_IT.md`)
 - PDF (`TIM_HUB_guide_IT.pdf`)
